@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Majordo — Agent IA et automatisations pour petits hôtels et conciergeries</title>
+  <meta name="description" content="Majordo installe un agent IA qui répond à vos voyageurs sur WhatsApp, 24 h/24 et dans toutes les langues, envoie les messages d'accueil et ne prévient votre équipe que lorsque c'est nécessaire. Petits hôtels, maisons d'hôtes, conciergeries, partout en France.">
+  <meta name="theme-color" content="#F5F4EF" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0D1524" media="(prefers-color-scheme: dark)">
+  <link rel="canonical" href="https://majordo.fr/">
+
+  <!-- Open Graph (partage sur WhatsApp, LinkedIn, etc.) -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="Majordo">
+  <meta property="og:title" content="Majordo — Vos voyageurs ont une réponse. Vous, vos soirées.">
+  <meta property="og:description" content="Un agent IA qui répond à vos voyageurs à toute heure, des messages d'accueil qui partent seuls, une équipe prévenue seulement quand c'est nécessaire.">
+  <meta property="og:url" content="https://majordo.fr/">
+  <meta property="og:image" content="https://majordo.fr/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Logo Majordo, une cloche de réception, et le titre : Vos voyageurs ont une réponse. Vous, vos soirées.">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Source+Sans+3:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Applique le thème choisi avant l'affichage (évite un flash) -->
+  <script>
+    (function () {
+      document.documentElement.classList.add("js");
+      try {
+        var t = localStorage.getItem("majordo-theme");
+        if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+  <!-- Symbole du logo, réutilisé dans la page -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="cloche" viewBox="0 0 32 32">
+      <circle cx="16" cy="7.6" r="1.9" fill="currentColor"/>
+      <rect x="15.1" y="9" width="1.8" height="3" fill="currentColor"/>
+      <path d="M5.5 22.5a10.5 10.5 0 0 1 21 0z" fill="currentColor"/>
+      <path d="M10 19.2a6.6 6.6 0 0 1 3.4-4.3" fill="none" stroke="var(--logo-shine, #fff)" stroke-width="1.2" stroke-linecap="round" opacity=".55"/>
+      <rect x="3" y="23.8" width="26" height="2.6" rx="1.3" fill="currentColor"/>
+    </symbol>
+    <symbol id="coche" viewBox="0 0 20 20">
+      <path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+  </svg>
+
+  <header class="site-header" id="haut">
+    <div class="container header-inner">
+      <a class="logo" href="#haut" aria-label="Majordo, retour en haut de page">
+        <svg class="logo-mark" aria-hidden="true"><use href="#cloche"/></svg>
+        <span class="logo-word">Majordo</span>
+      </a>
+      <nav class="main-nav" aria-label="Navigation principale">
+        <ul>
+          <li><a href="#approche">Approche</a></li>
+          <li><a href="#formules">Formules</a></li>
+          <li><a href="#deroulement">Déroulement</a></li>
+          <li><a href="#faq">Questions</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <button class="theme-toggle" type="button" aria-label="Activer le mode sombre" data-theme-toggle>
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
+        <a class="btn btn-small" href="#contact">Parlons-en</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="contenu">
+
+    <!-- 1. HÉROS -->
+    <section class="hero" aria-labelledby="titre-principal">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <p class="eyebrow">Agents IA pour l'hébergement</p>
+          <h1 id="titre-principal">Vos voyageurs ont une réponse. <em>Vous, vos soirées.</em></h1>
+          <p class="lead">Un agent IA qui répond à vos voyageurs à toute heure, des messages d'accueil qui partent seuls, et une équipe prévenue seulement quand c'est nécessaire.</p>
+          <ul class="hero-points" aria-label="En bref">
+            <li>Sur WhatsApp, 24 h/24</li>
+            <li>Toutes les langues</li>
+            <li>Partout en France, à distance</li>
+          </ul>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#contact">Parlons de votre établissement</a>
+            <a class="link-arrow" href="#formules">Voir les formules</a>
+          </div>
+          <p class="hero-for">Pour les petits hôtels, maisons d'hôtes et conciergeries en arrivée autonome.</p>
+        </div>
+
+        <figure class="flow" aria-labelledby="flow-titre">
+          <figcaption id="flow-titre" class="flow-title">Comment ça fonctionne</figcaption>
+          <ol class="flow-steps">
+            <li>
+              <span class="flow-step-title">Un voyageur écrit</span>
+              <span class="flow-step-text">Sur WhatsApp, à n'importe quelle heure, dans sa langue.</span>
+            </li>
+            <li>
+              <span class="flow-step-title">L'agent répond</span>
+              <span class="flow-step-text">À partir des informations de votre établissement. Il vérifie le séjour avant de donner un accès.</span>
+            </li>
+            <li>
+              <span class="flow-step-title">Vous êtes prévenu si besoin</span>
+              <span class="flow-step-text">Alertes classées&nbsp;:</span>
+              <span class="flow-tags"><span>Urgence</span><span>Intervention</span><span>Demande commerciale</span></span>
+            </li>
+          </ol>
+          <p class="flow-foot">Et le jour de l'arrivée, le message d'accueil part tout seul.</p>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 2. LE CONSTAT + CALCULATEUR -->
+    <section class="section" id="constat" aria-labelledby="titre-constat">
+      <div class="container">
+        <div class="split">
+          <div>
+            <p class="eyebrow">Le constat</p>
+            <h2 id="titre-constat">En arrivée autonome, tout passe par messages.</h2>
+            <p>Codes, wifi, accès, équipements, bonnes adresses&nbsp;: les mêmes questions reviennent chaque jour. Souvent le soir, souvent en plusieurs langues, et toujours au moment où vous faites autre chose.</p>
+          </div>
+          <div class="questions">
+            <p class="questions-label">Les questions qui reviennent</p>
+            <ul>
+              <li lang="fr">«&nbsp;Quel est le code de la porte&nbsp;?&nbsp;»</li>
+              <li lang="fr">«&nbsp;Le mot de passe du wifi&nbsp;?&nbsp;»</li>
+              <li lang="fr">«&nbsp;Où est le fer à repasser&nbsp;?&nbsp;»</li>
+              <li lang="fr">«&nbsp;Un restaurant près d'ici&nbsp;?&nbsp;»</li>
+              <li lang="en">“How do I get in after 10 pm?”</li>
+              <li lang="de">„Wie funktioniert die Kaffeemaschine?“</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="calc" id="calculateur" aria-labelledby="titre-calc">
+          <div class="calc-head">
+            <h3 id="titre-calc">Combien de temps cela vous prend-il&nbsp;?</h3>
+            <p>Faites le calcul avec vos propres chiffres.</p>
+          </div>
+          <form class="calc-form" data-calc onsubmit="return false">
+            <div class="calc-field">
+              <label for="calc-messages">Messages de voyageurs reçus par jour</label>
+              <div class="calc-input">
+                <input type="range" id="calc-messages-range" min="1" max="100" step="1" value="15" aria-hidden="true" tabindex="-1" data-sync="calc-messages">
+                <input type="number" id="calc-messages" inputmode="numeric" min="0" max="1000" step="1" value="15">
+              </div>
+            </div>
+            <div class="calc-field">
+              <label for="calc-minutes">Minutes passées par message, en moyenne</label>
+              <div class="calc-input">
+                <input type="range" id="calc-minutes-range" min="1" max="20" step="1" value="3" aria-hidden="true" tabindex="-1" data-sync="calc-minutes">
+                <input type="number" id="calc-minutes" inputmode="decimal" min="0" max="120" step="0.5" value="3">
+              </div>
+            </div>
+            <output class="calc-result" for="calc-messages calc-minutes" aria-live="polite">
+              <span class="calc-result-label">Temps passé à répondre</span>
+              <span class="calc-result-value" data-calc-hours>22 h 30</span>
+              <span class="calc-result-unit">par mois</span>
+              <span class="calc-result-sub" data-calc-sub>soit environ 5 h 15 par semaine</span>
+            </output>
+          </form>
+          <p class="calc-note">Estimation sur 30 jours, à partir de vos chiffres. Elle ne dit pas ce qu'un agent vous ferait gagner&nbsp;: cela dépend de vos messages, et c'est justement ce que l'on regarde ensemble au premier échange.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. MON APPROCHE -->
+    <section class="section section-alt" id="approche" aria-labelledby="titre-approche">
+      <div class="container">
+        <p class="eyebrow">Mon approche</p>
+        <h2 id="titre-approche" class="h2-large">On commence par ce qui vous prend le plus de temps.</h2>
+        <ul class="approach-cases">
+          <li><span>Pour l'un,</span> ce sont les messages.</li>
+          <li><span>Pour l'autre,</span> le ménage.</li>
+          <li><span>Pour un troisième,</span> les comptes aux propriétaires.</li>
+        </ul>
+        <div class="approach-steps">
+          <p><strong>D'abord, un échange</strong> pour mesurer où part votre temps.</p>
+          <p><strong>Ensuite, une proposition</strong> qui s'attaque en premier à ce point-là.</p>
+        </div>
+        <p class="approach-note">Les formules ci-dessous sont un point de départ, pas un cadre figé.</p>
+      </div>
+    </section>
+
+    <!-- 4. UN AGENT FORMÉ SUR VOTRE ÉTABLISSEMENT -->
+    <section class="section" id="agent" aria-labelledby="titre-agent">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Sur mesure</p>
+          <h2 id="titre-agent">Un agent formé sur votre établissement.</h2>
+          <p>Il ne répond pas «&nbsp;en général&nbsp;». Il connaît vos lieux, vos règles et vos tarifs, organisés en six blocs que nous remplissons ensemble.</p>
+        </div>
+        <ol class="blocks">
+          <li>
+            <h3>Les logements</h3>
+            <p>Chambres, suites ou appartements&nbsp;: capacité, configuration, particularités de chacun.</p>
+          </li>
+          <li>
+            <h3>L'arrivée et l'accès</h3>
+            <p>Horaires, itinéraire, boîte à clés, digicode. Les accès ne sont donnés qu'après vérification du séjour.</p>
+          </li>
+          <li>
+            <h3>Les équipements</h3>
+            <p>Wifi, chauffage, cuisine, et le mode d'emploi de chaque appareil, de la machine à café au lave-linge.</p>
+          </li>
+          <li>
+            <h3>Les règles de la maison</h3>
+            <p>Horaires, bruit, animaux, tabac, heure et consignes de départ.</p>
+          </li>
+          <li>
+            <h3>Les services et tarifs</h3>
+            <p>Ce que vous proposez, à quel prix, et ce qui doit d'abord être validé par vous.</p>
+          </li>
+          <li>
+            <h3>Le quartier</h3>
+            <p>Restaurants, commerces, transports, pharmacie&nbsp;: les adresses que vous recommandez.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 5–7. FORMULES, INCLUS, OPTIONS -->
+    <section class="section section-alt" id="formules" aria-labelledby="titre-formules">
+      <div class="container">
+        <div class="section-head section-head-center">
+          <p class="eyebrow">Les formules</p>
+          <h2 id="titre-formules">Deux points de départ.</h2>
+          <p>À choisir avec ou sans engagement.</p>
+        </div>
+
+        <fieldset class="switch" data-billing>
+          <legend class="visually-hidden">Type d'engagement</legend>
+          <input type="radio" name="billing" id="billing-flex" value="flex" checked>
+          <label for="billing-flex">Sans engagement</label>
+          <input type="radio" name="billing" id="billing-commit" value="commit">
+          <label for="billing-commit">Engagement 12&nbsp;mois</label>
+        </fieldset>
+
+        <div class="plans">
+          <article class="plan plan-ink" aria-labelledby="plan-accueil">
+            <header class="plan-head">
+              <h3 id="plan-accueil">Accueil Autonome</h3>
+              <p class="plan-for">Petit hôtel, maison d'hôtes</p>
+            </header>
+            <p class="plan-price" aria-live="polite">
+              <span class="plan-amount"><span data-flex="59" data-commit="89">59</span>&nbsp;€</span>
+              <span class="plan-per">/ mois</span>
+            </p>
+            <p class="plan-setup" data-flex="+ 490 € de mise en place · sans engagement" data-commit="Mise en place offerte · engagement 12 mois">+ 490 € de mise en place · sans engagement</p>
+            <ul class="plan-list">
+              <li><svg aria-hidden="true"><use href="#coche"/></svg>Agent IA sur WhatsApp, 24 h/24, multilingue, qui vérifie le séjour avant de donner un accès</li>
+              <li><svg aria-hidden="true"><use href="#coche"/></svg>Alertes classées&nbsp;: urgence, intervention, demande commerciale</li>
+              <li><svg aria-hidden="true"><use href="#coche"/></svg>Message d'accueil automatique le jour de l'arrivée, en français et en anglais</li>
+              <li><svg aria-hidden="true"><use href="#coche"/></svg>Tableau des séjours alimenté depuis votre logiciel de réservation</li>
+            </ul>
+            <a class="btn btn-brass" href="#contact" data-plan-link="Accueil Autonome">En parler</a>
+          </article>
+
+          <article class="plan" aria-labelledby="plan-conciergerie">
+            <header class="plan-head">
+              <h3 id="plan-conciergerie">Conciergerie</h3>
+              <p class="plan-for">À partir de 10 logements</p>
+            </header>
+            <p class="plan-price" aria-live="polite">
+              <span class="plan-amount"><span data-flex="12" data-commit="15">12</span>&nbsp;€</span>
+              <span class="plan-per">/ logement / mois</span>
+            </p>
+            <p class="plan-setup" data-flex="+ 990 € de mise en place · sans engagement" data-commit="Mise en place offerte · engagement 12 mois">+ 990 € de mise en place · sans engagement</p>
+            <ul class="plan-list">
+              <li class="plan-list-lead"><svg aria-hidden="true"><use href="#coche"/></svg>Tout ce que comprend Accueil Autonome, plus&nbsp;:</li>
+              <li><svg aria-hidden="true"><use href="#coche"/></svg>Informations et messages propres à chaque logement</li>
+              <li><svg aria-hidden="true"><use href="#coche"/></svg>Alertes réparties entre vos équipes</li>
+              <li><svg aria-hidden="true"><use href="#coche"/></svg>Branchement sur votre outil de gestion existant</li>
+            </ul>
+            <a class="btn btn-outline" href="#contact" data-plan-link="Conciergerie">En parler</a>
+          </article>
+        </div>
+        <p class="plans-note">Tarifs indicatifs, ajustés après le premier échange.</p>
+
+        <div class="extras">
+          <div class="extras-col">
+            <h3 class="h-rule">Inclus dans l'abonnement</h3>
+            <ul class="check-list">
+              <li><svg aria-hidden="true"><use href="#coche"/></svg>Hébergement et fonctionnement</li>
+              <li><svg aria-hidden="true"><use href="#coche"/></svg>Coûts de l'IA et de WhatsApp, en usage normal</li>
+              <li><svg aria-hidden="true"><use href="#coche"/></svg>Surveillance, et intervention en cas d'erreur</li>
+              <li><svg aria-hidden="true"><use href="#coche"/></svg>1 heure d'ajustements par mois</li>
+            </ul>
+          </div>
+          <div class="extras-col">
+            <h3 class="h-rule">Options</h3>
+            <dl class="menu">
+              <div class="menu-row">
+                <dt>Fiche Google Business optimisée</dt>
+                <dd>190&nbsp;€</dd>
+              </div>
+              <div class="menu-row">
+                <dt>Demande d'avis automatique</dt>
+                <dd>190&nbsp;€ + 15&nbsp;€/mois</dd>
+              </div>
+              <div class="menu-row">
+                <dt>Logiciel de réservation</dt>
+                <dd>Sur devis</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. ALLER PLUS LOIN -->
+    <section class="section section-ink" id="sur-mesure" aria-labelledby="titre-sur-mesure">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Aller plus loin</p>
+          <h2 id="titre-sur-mesure">Tout le séjour peut s'automatiser, étape par étape.</h2>
+          <p>Au-delà des messages, d'autres tâches peuvent être prises en charge sur mesure, quand vous en avez besoin.</p>
+        </div>
+        <ol class="timeline">
+          <li>
+            <h3>Avant l'arrivée</h3>
+            <p>Confirmation, informations pratiques, heure d'arrivée, services proposés.</p>
+          </li>
+          <li>
+            <h3>Pendant le séjour</h3>
+            <p>Réponses aux questions, demandes de services, suivi des incidents.</p>
+          </li>
+          <li>
+            <h3>Opérations</h3>
+            <p>Ménage, linge, interventions&nbsp;: les bonnes personnes prévenues au bon moment.</p>
+          </li>
+          <li>
+            <h3>Après le départ</h3>
+            <p>Demande d'avis, fidélisation, factures.</p>
+          </li>
+          <li>
+            <h3>Pilotage</h3>
+            <p>Rapports d'activité, et un rapport par propriétaire pour les conciergeries.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 9. COMMENT ÇA SE PASSE -->
+    <section class="section" id="deroulement" aria-labelledby="titre-deroulement">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Comment ça se passe</p>
+          <h2 id="titre-deroulement">Cinq étapes, sans jargon.</h2>
+        </div>
+        <ol class="steps">
+          <li>
+            <h3>Un échange de 30&nbsp;minutes</h3>
+            <p>Par téléphone ou en visio. On regarde où part votre temps.</p>
+          </li>
+          <li>
+            <h3>Une proposition chiffrée</h3>
+            <p>Claire, écrite, centrée sur ce qui vous pèse le plus.</p>
+          </li>
+          <li>
+            <h3>La mise en place</h3>
+            <p>Environ deux semaines. Je m'occupe de la technique.</p>
+          </li>
+          <li>
+            <h3>30 jours d'ajustements offerts</h3>
+            <p>On affine les réponses à partir des vrais messages.</p>
+          </li>
+          <li>
+            <h3>Un suivi mensuel</h3>
+            <p>Un point régulier, et des corrections quand il le faut.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- RÉFÉRENCES -->
+    <section class="section section-alt" id="references" aria-labelledby="titre-references">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Références</p>
+          <h2 id="titre-references">Un premier établissement accompagné.</h2>
+        </div>
+        <div class="refs">
+          <div class="ref-main">
+            <p class="ref-name">Le XV Cannes</p>
+            <p class="ref-desc">7 suites en arrivée autonome</p>
+          </div>
+          <div class="placeholder" role="note">
+            <span class="placeholder-tag">À venir</span>
+            <p>Témoignage du gérant</p>
+          </div>
+          <div class="placeholder" role="note">
+            <span class="placeholder-tag">À venir</span>
+            <p>Résultats mesurés après quelques mois</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. ENGAGEMENTS -->
+    <section class="section" id="engagements" aria-labelledby="titre-engagements">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Mes engagements</p>
+          <h2 id="titre-engagements">Ce que l'agent ne fera jamais, et ce que je vous garantis.</h2>
+        </div>
+        <ul class="promises">
+          <li>
+            <svg aria-hidden="true"><use href="#coche"/></svg>
+            <p><strong>Aucun prix, remise ou prolongation sans votre accord.</strong> Ces demandes vous sont transmises.</p>
+          </li>
+          <li>
+            <svg aria-hidden="true"><use href="#coche"/></svg>
+            <p><strong>Aucun code sensible communiqué</strong> à quelqu'un dont le séjour n'est pas vérifié.</p>
+          </li>
+          <li>
+            <svg aria-hidden="true"><use href="#coche"/></svg>
+            <p><strong>Il dit honnêtement qu'il est un assistant automatique</strong> et passe la main à un humain dès que nécessaire.</p>
+          </li>
+          <li>
+            <svg aria-hidden="true"><use href="#coche"/></svg>
+            <p><strong>Vos données vous sont rendues</strong> si vous arrêtez, et ce qui a été construit peut être racheté.</p>
+          </li>
+          <li>
+            <svg aria-hidden="true"><use href="#coche"/></svg>
+            <p><strong>Pas besoin d'accéder à votre boîte mail personnelle.</strong></p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 11. FAQ -->
+    <section class="section section-alt" id="faq" aria-labelledby="titre-faq">
+      <div class="container container-narrow">
+        <div class="section-head">
+          <p class="eyebrow">Questions fréquentes</p>
+          <h2 id="titre-faq">Vos questions, sans détour.</h2>
+        </div>
+        <div class="faq">
+          <details>
+            <summary>Et si l'IA se trompe&nbsp;?</summary>
+            <div class="faq-body">
+              <p>L'agent répond uniquement à partir des informations de votre établissement, que vous avez relues. Quand il ne sait pas, il le dit et vous prévient plutôt que d'inventer. Les sujets sensibles (prix, remises, prolongations, codes) sont verrouillés. Je surveille le fonctionnement et j'interviens en cas d'erreur&nbsp;; les 30&nbsp;premiers jours servent justement à corriger ce qui doit l'être.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Mes voyageurs préfèrent parler à un humain.</summary>
+            <div class="faq-body">
+              <p>L'agent se présente comme un assistant automatique, sans faire semblant. Dès qu'un voyageur demande une personne, ou que la situation l'exige, la demande vous est transmise. Dans les faits, beaucoup de questions (wifi, code, horaires) attendent surtout une réponse rapide&nbsp;; vous gardez la main sur tout le reste.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Que deviennent mes données et celles de mes voyageurs&nbsp;?</summary>
+            <div class="faq-body">
+              <p>Elles servent uniquement à faire fonctionner votre service. Je n'ai pas besoin d'accéder à votre boîte mail personnelle. Les outils utilisés et l'endroit où les données sont hébergées vous sont présentés dans la proposition. Si vous arrêtez, vos données vous sont rendues.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Quel logiciel de réservation faut-il&nbsp;?</summary>
+            <div class="faq-body">
+              <p>Vous gardez le vôtre. Le tableau des séjours est alimenté depuis votre logiciel actuel&nbsp;; la manière de s'y brancher dépend de ce qu'il permet, et on le vérifie lors du premier échange. Si vous n'en avez pas, un logiciel de réservation peut être mis en place sur devis.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Combien de temps pour démarrer&nbsp;?</summary>
+            <div class="faq-body">
+              <p>Comptez environ deux semaines entre la validation de la proposition et la mise en service. De votre côté, il faut surtout rassembler les informations de l'établissement (accès, équipements, règles, adresses)&nbsp;: je vous guide, et aucune compétence technique n'est nécessaire.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Que se passe-t-il si j'arrête&nbsp;?</summary>
+            <div class="faq-body">
+              <p>Sans engagement, vous arrêtez quand vous le souhaitez, selon les conditions prévues dans la proposition. Avec l'engagement de 12&nbsp;mois, l'abonnement court jusqu'à son terme. Dans les deux cas, vos données vous sont rendues, et vous pouvez racheter ce qui a été construit pour continuer à l'utiliser.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12. CONTACT -->
+    <section class="section" id="contact" aria-labelledby="titre-contact">
+      <div class="container contact-grid">
+        <div class="contact-intro">
+          <p class="eyebrow">Contact</p>
+          <h2 id="titre-contact">Parlons de votre établissement.</h2>
+          <p>Trente minutes, par téléphone ou en visio, pour voir où part votre temps et ce qui peut être pris en charge. Sans engagement.</p>
+
+          <div class="founder">
+            <div class="founder-mono" aria-hidden="true">AC</div>
+            <div>
+              <p class="founder-name">Andréa Cohen</p>
+              <p class="founder-role">Fondateur de Majordo, étudiant à l'ESCP Business School. Basé à Paris, j'interviens partout en France, à distance.</p>
+            </div>
+          </div>
+
+          <p class="contact-direct">Vous préférez écrire directement&nbsp;?<br>
+            <a data-contact-email href="#contact">par email</a><span data-contact-phone-wrap hidden> · <a data-contact-phone href="#contact"></a></span>
+          </p>
+        </div>
+
+        <form class="contact-form" data-contact-form novalidate>
+          <div class="field">
+            <label for="f-nom">Votre nom <span class="req" aria-hidden="true">*</span></label>
+            <input id="f-nom" name="nom" type="text" autocomplete="name" required maxlength="120" aria-describedby="f-nom-err">
+            <p class="field-error" id="f-nom-err" aria-live="polite"></p>
+          </div>
+          <div class="field">
+            <label for="f-etab">Votre établissement <span class="req" aria-hidden="true">*</span></label>
+            <input id="f-etab" name="etablissement" type="text" autocomplete="organization" required maxlength="160" aria-describedby="f-etab-err">
+            <p class="field-error" id="f-etab-err" aria-live="polite"></p>
+          </div>
+          <div class="field">
+            <label for="f-logements">Nombre de logements <span class="req" aria-hidden="true">*</span></label>
+            <input id="f-logements" name="logements" type="number" inputmode="numeric" min="1" max="2000" step="1" required aria-describedby="f-logements-err">
+            <p class="field-error" id="f-logements-err" aria-live="polite"></p>
+          </div>
+          <div class="field">
+            <label for="f-contact">Email ou téléphone <span class="req" aria-hidden="true">*</span></label>
+            <input id="f-contact" name="contact" type="text" autocomplete="email" required maxlength="160" aria-describedby="f-contact-hint f-contact-err">
+            <p class="field-hint" id="f-contact-hint">Pour que je puisse vous recontacter.</p>
+            <p class="field-error" id="f-contact-err" aria-live="polite"></p>
+          </div>
+          <div class="field">
+            <label for="f-message">Votre message <span class="field-optional">(facultatif)</span></label>
+            <textarea id="f-message" name="message" rows="4" maxlength="2000" placeholder="Ce qui vous prend le plus de temps aujourd'hui, vos disponibilités…"></textarea>
+          </div>
+          <!-- Champ piège anti-robots : laissé vide par les humains -->
+          <div class="hp" aria-hidden="true">
+            <label for="f-site">Ne pas remplir</label>
+            <input id="f-site" name="site_web" type="text" tabindex="-1" autocomplete="off">
+          </div>
+          <p class="form-legal"><span class="req" aria-hidden="true">*</span> Champs obligatoires. Vos informations servent uniquement à vous recontacter. <a href="mentions-legales.html#donnees">En savoir plus</a>.</p>
+          <button class="btn btn-primary btn-block" type="submit" data-submit>Envoyer ma demande</button>
+          <div class="form-status" data-form-status role="status" aria-live="polite" tabindex="-1"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a class="logo" href="#haut" aria-label="Majordo, retour en haut de page">
+          <svg class="logo-mark" aria-hidden="true"><use href="#cloche"/></svg>
+          <span class="logo-word">Majordo</span>
+        </a>
+        <p>Agents IA et automatisations pour petits hôtels, maisons d'hôtes et conciergeries. Partout en France, à distance.</p>
+      </div>
+      <ul class="footer-links">
+        <li><a data-contact-email data-keep-text href="#contact">Écrire un email</a></li>
+        <li><a href="#contact">Demander un échange</a></li>
+        <li><a href="mentions-legales.html">Mentions légales et confidentialité</a></li>
+      </ul>
+      <p class="footer-legal">© <span data-year>2026</span> Majordo · Andréa Cohen, entrepreneur individuel · TVA non applicable, art. 293&nbsp;B du CGI</p>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
